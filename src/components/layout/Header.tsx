@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Github, Linkedin, Mail, Mic, Cpu } from "lucide-react"
+import { Figma, Github, Linkedin, Mail } from 'lucide-react';
 import { cn } from "@/lib/utils"
 
 export default function Header() {
@@ -26,7 +26,7 @@ export default function Header() {
 
                 {/* Brand */}
                 <Link href="#home" className="text-violet-500 font-medium px-2">
-                    Zain.
+                    Zain!
                 </Link>
 
                 {/* Navigation */}
@@ -47,8 +47,12 @@ export default function Header() {
 
                 {/* Social Icons */}
                 <div className="flex items-center gap-4 ml-4">
-                    <Link href="mailto:z3eiyn@email.com">
-                        <Mail className="w-4 h-4 hover:text-white transition" />
+                    <Link
+                        href="https://www.figma.com/@zeiyn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Figma className="w-4 h-4 hover:text-white transition" />
                     </Link>
                     <Link
                         href="https://github.com/zeiynz"
@@ -63,6 +67,9 @@ export default function Header() {
                         rel="noopener noreferrer"
                     >
                         <Linkedin className="w-4 h-4 hover:text-white transition" />
+                    </Link>
+                    <Link href="mailto:z3eiyn@email.com">
+                        <Mail className="w-4 h-4 hover:text-white transition" />
                     </Link>
                 </div>
             </div>
