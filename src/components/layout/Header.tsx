@@ -21,14 +21,14 @@ export default function Header() {
                     "w-full max-w-4xl flex items-center justify-between px-6 py-3 rounded-full",
                     "border shadow-md backdrop-blur-md transition-all duration-300 ease-in-out",
                     scrolled
-                        ? "bg-white/1 border-gray-200 text-violet-600"
+                        ? "bg-white/1 border-transparent text-violet-600"
                         : "bg-white/40 border-transparent text-violet-600"
                 )}
             >
                 {/* Brand */}
                 <Link
                     href="#home"
-                    className="text-xl font-bold tracking-tight text-violet-600"
+                    className="text-xl font-bold tracking-tight text-black"
                 >
                     Zain!
                 </Link>
@@ -54,16 +54,16 @@ export default function Header() {
                 {/* Socials */}
                 <div className="flex items-center gap-3">
                     <Link href="https://www.figma.com/@zeiyn" target="_blank" aria-label="Figma">
-                        <Figma className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
+                        <Figma className="w-[18px] h-[18px] text-violet-600 hover:text-black transition duration-200" />
                     </Link>
                     <Link href="https://github.com/zeiynz" target="_blank" aria-label="GitHub">
-                        <Github className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
+                        <Github className="w-[18px] h-[18px] text-violet-600 hover:text-black transition duration-200" />
                     </Link>
                     <Link href="https://linkedin.com/in/zeiyn" target="_blank" aria-label="LinkedIn">
-                        <Linkedin className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
+                        <Linkedin className="w-[18px] h-[18px] text-violet-600 hover:text-black transition duration-200" />
                     </Link>
                     <Link href="mailto:z3eiyn@email.com" aria-label="Email">
-                        <Mail className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
+                        <Mail className="w-[18px] h-[18px] text-violet-600 hover:text-black transition duration-200" />
                     </Link>
                 </div>
             </div>
