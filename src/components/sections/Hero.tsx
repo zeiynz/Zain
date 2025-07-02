@@ -2,14 +2,8 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { useMemo } from "react"
-import {
-    Atom,
-    Layout,
-    Code2,
-    Wind,
-    Palette,
-} from "lucide-react"
+import { useEffect, useState } from "react"
+import { Atom, Layout, Code2, Wind, Palette } from "lucide-react"
 
 const skills = [
     { label: "React", icon: Atom },
@@ -20,13 +14,18 @@ const skills = [
 ]
 
 export default function Hero() {
-    const floatingIcons = useMemo(() => {
-        return [...Array(8)].map((_, i) => ({
+    const [floatingIcons, setFloatingIcons] = useState<
+        { top: string; left: string; delay: number; key: number }[]
+    >([])
+
+    useEffect(() => {
+        const icons = [...Array(8)].map((_, i) => ({
             top: `${Math.random() * 90}%`,
             left: `${Math.random() * 100}%`,
             delay: i * 0.5,
             key: i,
         }))
+        setFloatingIcons(icons)
     }, [])
 
     return (
