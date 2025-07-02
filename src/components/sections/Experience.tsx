@@ -17,9 +17,6 @@ const experiences = [
 export default function Experience() {
     return (
         <section id="experience" className="relative max-w-5xl mx-auto px-6 py-24">
-            {/* Background Blur */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-transparent to-purple-50 opacity-40 blur-3xl -z-10" />
-
             {/* Title */}
             <motion.h2
                 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-16"
@@ -40,7 +37,7 @@ export default function Experience() {
                         </div>
 
                         {/* Card without loop animation */}
-                        <Card delay={0} once>
+                        <Card delay={0} animateOnce>
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
                                 <h3 className="text-lg font-semibold text-gray-800">{exp.role}</h3>
                                 <span className="text-sm text-gray-500">{exp.period}</span>

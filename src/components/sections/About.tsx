@@ -11,7 +11,7 @@ export default function About() {
         },
         {
             title: "🎯 Detail Oriented",
-            desc: "Every pixel matters — I craft interfaces with precision and consistency.",
+            desc: "Every pixel matters I craft interfaces with precision and consistency.",
         },
         {
             title: "🚀 Fast & Performant",
@@ -19,7 +19,7 @@ export default function About() {
         },
         {
             title: "🤝 Collaborative",
-            desc: "I thrive in teams — communication and feedback are key to every great product.",
+            desc: "I thrive in teams communication and feedback are key to every great product.",
         },
     ]
 
