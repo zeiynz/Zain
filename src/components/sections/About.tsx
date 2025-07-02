@@ -1,8 +1,28 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Card } from "@/components/ui/Card"
 
 export default function About() {
+    const highlights = [
+        {
+            title: "🧠 Problem Solver",
+            desc: "I love turning complex ideas into clear, functional designs that users understand instantly.",
+        },
+        {
+            title: "🎯 Detail Oriented",
+            desc: "Every pixel matters — I craft interfaces with precision and consistency.",
+        },
+        {
+            title: "🚀 Fast & Performant",
+            desc: "Optimized code and fast loading UI is always part of my workflow.",
+        },
+        {
+            title: "🤝 Collaborative",
+            desc: "I thrive in teams — communication and feedback are key to every great product.",
+        },
+    ]
+
     return (
         <section id="about" className="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
             {/* Title */}
@@ -25,38 +45,13 @@ export default function About() {
                 Hello! You can call me Zain. I’m a Software Engineer working with the React ecosystem. I'm passionate about building elegant, intuitive, and high-performance user experiences. I enjoy solving problems through clean design systems and creating products people love to use.
             </motion.p>
 
-
             {/* Highlight Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                    {
-                        title: "🧠 Problem Solver",
-                        desc: "I love turning complex ideas into clear, functional designs that users understand instantly.",
-                    },
-                    {
-                        title: "🎯 Detail Oriented",
-                        desc: "Every pixel matters — I craft interfaces with precision and consistency.",
-                    },
-                    {
-                        title: "🚀 Fast & Performant",
-                        desc: "Optimized code and fast loading UI is always part of my workflow.",
-                    },
-                    {
-                        title: "🤝 Collaborative",
-                        desc: "I thrive in teams — communication and feedback are key to every great product.",
-                    },
-                ].map((card, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className="bg-white/60 backdrop-blur-md border border-gray-200/50 rounded-xl p-6 shadow-sm text-left"
-                    >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+                {highlights.map((card, i) => (
+                    <Card key={i} delay={0.2 + i * 0.1}>
                         <h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}</h3>
                         <p className="text-sm text-gray-600 leading-relaxed">{card.desc}</p>
-                    </motion.div>
+                    </Card>
                 ))}
             </div>
         </section>
