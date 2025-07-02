@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Figma, Github, Linkedin, Mail } from 'lucide-react';
+import { Figma, Github, Linkedin, Mail } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export default function Header() {
@@ -15,61 +15,55 @@ export default function Header() {
     }, [])
 
     return (
-        <header className="fixed top-6 inset-x-0 z-50 flex justify-center transition-all">
-            <div className={cn(
-                "w-full max-w-5xl flex items-center justify-between px-6 py-2 rounded-full",
-                "backdrop-blur-md border text-sm shadow-sm transition-all",
-                scrolled
-                    ? "bg-black/10 border-white/10 text-violet-500"
-                    : "bg-transparent border-transparent text-violet-500"
-            )}>
-
+        <header className="fixed top-6 inset-x-0 z-50 flex justify-center transition-all duration-300 ease-in-out">
+            <div
+                className={cn(
+                    "w-full max-w-4xl flex items-center justify-between px-6 py-3 rounded-full",
+                    "border shadow-md backdrop-blur-md transition-all duration-300 ease-in-out",
+                    scrolled
+                        ? "bg-white/1 border-gray-200 text-violet-600"
+                        : "bg-white/40 border-transparent text-violet-600"
+                )}
+            >
                 {/* Brand */}
-                <Link href="#home" className="text-violet-500 font-medium px-2">
+                <Link
+                    href="#home"
+                    className="text-xl font-bold tracking-tight text-violet-600"
+                >
                     Zain!
                 </Link>
 
                 {/* Navigation */}
-                <nav className="flex items-center gap-4">
-                    <Link href="#hero" className="hover:text-white transition">
-                        home
-                    </Link>
-                    <Link href="#about" className="hover:text-white transition">
-                        about
-                    </Link>
-                    <Link href="#experience" className="hover:text-white transition">
-                        experience
-                    </Link>
-                    <Link href="#projects" className="hover:text-white transition">
-                        projects
-                    </Link>
+                <nav className="hidden md:flex items-center gap-6 text-[15px] font-medium">
+                    {[
+                        { label: "home", href: "#hero" },
+                        { label: "about", href: "#about" },
+                        { label: "experience", href: "#experience" },
+                        { label: "projects", href: "#projects" },
+                    ].map((item) => (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className="hover:text-black transition-colors duration-200"
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
                 </nav>
 
-                {/* Social Icons */}
-                <div className="flex items-center gap-4 ml-4">
-                    <Link
-                        href="https://www.figma.com/@zeiyn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Figma className="w-4 h-4 hover:text-white transition" />
+                {/* Socials */}
+                <div className="flex items-center gap-3">
+                    <Link href="https://www.figma.com/@zeiyn" target="_blank" aria-label="Figma">
+                        <Figma className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
                     </Link>
-                    <Link
-                        href="https://github.com/zeiynz"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Github className="w-4 h-4 hover:text-white transition" />
+                    <Link href="https://github.com/zeiynz" target="_blank" aria-label="GitHub">
+                        <Github className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
                     </Link>
-                    <Link
-                        href="https://linkedin.com/in/zeiyn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Linkedin className="w-4 h-4 hover:text-white transition" />
+                    <Link href="https://linkedin.com/in/zeiyn" target="_blank" aria-label="LinkedIn">
+                        <Linkedin className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
                     </Link>
-                    <Link href="mailto:z3eiyn@email.com">
-                        <Mail className="w-4 h-4 hover:text-white transition" />
+                    <Link href="mailto:z3eiyn@email.com" aria-label="Email">
+                        <Mail className="w-[18px] h-[18px] text-gray-500 hover:text-black transition duration-200" />
                     </Link>
                 </div>
             </div>
