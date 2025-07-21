@@ -20,9 +20,10 @@ const projects = [
         desc: "An app that uses camera-based disease detection and offers vet consultations via chat. It also helps you find nearby veterinarians with a user-friendly interface, ensuring your pets get the best care effortlessly.",
     },
     {
-        title: "Startup Dashboard",
-        url: "#",
-        desc: "Analytics dashboard with interactive charts and real-time insights. Built with Next.js, Recharts, and Tailwind.",
+        title: "Zeiyn Portfolio UI",
+        url: "https://www.figma.com/community/file/1522636825693990649/portfolio-iamzeiyn-com",
+        desc: "A clean and modern portfolio UI built in Figma — highlighting projects, experience, and digital identity through bold typography, intuitive layout, and seamless UX.",
+
     },
 ]
 
