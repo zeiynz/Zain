@@ -11,7 +11,7 @@ const config: Config = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["var(--font-geist-sans)", "sans-serif"],
+                sans: ["var(--font-geist)", "var(--font-inter)", "sans-serif"],
             },
         },
     },
