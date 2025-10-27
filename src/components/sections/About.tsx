@@ -42,7 +42,7 @@ export default function About() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
             >
-                Hello! You can call me Zain. I’m a Software Engineer working with the React ecosystem. I'm passionate about building elegant, intuitive, and high-performance user experiences. I enjoy solving problems through clean design systems and creating products people love to use.
+                {"Hello! You can call me Zain. I’m a Software Engineer working with the React ecosystem. I'm passionate about building elegant, intuitive, and high-performance user experiences. I enjoy solving problems through clean design systems and creating products people love to use."}
             </motion.p>
 
             {/* Highlight Cards */}
