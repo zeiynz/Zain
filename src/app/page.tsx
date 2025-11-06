@@ -1,3 +1,4 @@
+// app/page.tsx
 import Hero from "@/components/sections/Hero"
 import About from "@/components/sections/About"
 import Experience from "@/components/sections/Experience"
@@ -6,7 +7,7 @@ import Footer from "@/components/layout/Footer"
 
 export default function Home() {
   return (
-    <main className="bg-white text-gray-900 min-h-screen font-sans">
+    <main className="min-h-screen bg-transparent">
       <Hero />
       <About />
       <Experience />

@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useEffect, useState } from "react"
 import { Atom, Layout, Code2, Wind, Palette } from "lucide-react"
+import clsx from "clsx"
 
 const skills = [
     { label: "React", icon: Atom },
@@ -14,36 +14,86 @@ const skills = [
 ]
 
 export default function Hero() {
-    const [floatingIcons, setFloatingIcons] = useState<
-        { top: string; left: string; delay: number; key: number }[]
+    const [particles, setParticles] = useState<
+        { top: string; left: string; delay: number; key: number; size: number }[]
     >([])
 
+    const mouseX = useMotionValue(0)
+    const mouseY = useMotionValue(0)
+
+    const springConfig = { damping: 25, stiffness: 150 }
+    const smoothMouseX = useSpring(mouseX, springConfig)
+    const smoothMouseY = useSpring(mouseY, springConfig)
+
     useEffect(() => {
-        const icons = [...Array(8)].map((_, i) => ({
-            top: `${Math.random() * 90}%`,
-            left: `${Math.random() * 100}%`,
-            delay: i * 0.5,
-            key: i,
-        }))
-        setFloatingIcons(icons)
+        setParticles(
+            [...Array(30)].map((_, i) => ({
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                delay: Math.random() * 5,
+                key: i,
+                size: Math.random() * 2 + 1,
+            }))
+        )
     }, [])
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        mouseX.set(e.clientX - rect.left)
+        mouseY.set(e.clientY - rect.top)
+    }
 
     return (
         <section
             id="hero"
-            className="relative min-h-screen bg-gradient-to-br from-[#f5f7fa] to-[#ffffff] px-6 flex items-center justify-center overflow-hidden"
+            className="relative min-h-screen bg-black px-6 flex items-center justify-center overflow-hidden"
+            onMouseMove={handleMouseMove}
         >
-            {/* Floating Icons */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                {floatingIcons.map(({ top, left, key, delay }) => (
+            {/* Grid Pattern */}
+            <div className="absolute inset-0">
+                <div
+                    className={clsx(
+                        "absolute inset-0 opacity-[0.03]",
+                        "[background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)]",
+                        "[background-size:50px_50px]"
+                    )}
+                />
+            </div>
+
+            {/* Cursor Follow Gradient */}
+            <motion.div
+                className="absolute w-96 h-96 rounded-full pointer-events-none"
+                style={{
+                    background: "radial-gradient(circle, rgba(120,120,130,0.15) 0%, transparent 70%)",
+                    x: smoothMouseX,
+                    y: smoothMouseY,
+                    translateX: "-50%",
+                    translateY: "-50%",
+                }}
+            />
+
+            {/* Subtle Static Gradient */}
+            <div className="absolute inset-0">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-zinc-800/30 rounded-full blur-[120px]" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-zinc-700/20 rounded-full blur-[120px]" />
+            </div>
+
+            {/* Stars/Particles */}
+            <div className="absolute inset-0 pointer-events-none">
+                {particles.map(({ top, left, key, delay, size }) => (
                     <motion.div
                         key={key}
-                        className="absolute w-6 h-6 bg-white/40 rounded-xl backdrop-blur-sm shadow-md"
-                        style={{ top, left }}
-                        initial={{ y: 0, opacity: 0 }}
-                        animate={{ y: [0, -20, 0], opacity: 0.3 }}
+                        className="absolute bg-zinc-400 rounded-full"
+                        style={{
+                            top,
+                            left,
+                            width: `${size}px`,
+                            height: `${size}px`,
+                        }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 0.6, 0] }}
                         transition={{
-                            duration: 6,
+                            duration: 4,
                             repeat: Infinity,
                             ease: "easeInOut",
                             delay,
@@ -53,90 +103,134 @@ export default function Hero() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 text-center max-w-2xl flex flex-col items-center gap-6">
-                {/* Avatar */}
+            <div className="relative z-10 text-center max-w-4xl flex flex-col items-center gap-8">
+                {/* Animated Shape */}
                 <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
+                    initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.6 }}
-                    className="relative"
+                    transition={{ duration: 0.8 }}
+                    className="relative w-32 h-32 mb-4"
                 >
-                    <Image
-                        src="/images/memoji.jpg"
-                        alt="Zain Avatar"
-                        width={160}
-                        height={160}
-                        className="rounded-full border-4 border-white shadow-xl"
-                        priority
-                    />
-                    <div className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-white rounded-full shadow animate-ping" />
+                    {/* Rotating Squares */}
+                    <motion.div
+                        className="absolute inset-0"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    >
+                        <div className={clsx(
+                            "absolute inset-0 border-2 border-zinc-700 rounded-2xl",
+                            "backdrop-blur-sm"
+                        )} />
+                    </motion.div>
+
+                    <motion.div
+                        className="absolute inset-2"
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                    >
+                        <div className={clsx(
+                            "absolute inset-0 border-2 border-zinc-600 rounded-xl",
+                            "backdrop-blur-sm"
+                        )} />
+                    </motion.div>
+
+                    {/* Center Dot */}
+                    <motion.div
+                        className="absolute inset-0 flex items-center justify-center"
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <div className="w-3 h-3 bg-white rounded-full" />
+                    </motion.div>
+
+                    {/* Glow Effect */}
+                    <div className="absolute inset-0 bg-zinc-700/20 rounded-full blur-2xl" />
                 </motion.div>
 
                 {/* Title */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight"
-                >
-                    Hi, I’m{" "}
-                    <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent animate-gradient-slow">
-                        Zain
-                    </span>
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="text-gray-500 text-base sm:text-lg max-w-md"
-                >
-                    Building immersive UI with React, Next.js & Tailwind. Passionate about design systems and clean code.
-                </motion.p>
+                <div className="space-y-5">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="text-5xl sm:text-7xl font-bold text-white leading-tight"
+                    >
+                        Hi, I'm{" "}
+                        <span className="text-zinc-400">Zain</span>
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
+                        className="text-zinc-500 text-lg sm:text-xl max-w-2xl leading-relaxed mx-auto"
+                    >
+                        Building immersive UI with React, Next.js & Tailwind.
+                        <br />
+                        Passionate about design systems and clean code.
+                    </motion.p>
+                </div>
 
                 {/* Buttons */}
                 <motion.div
-                    className="mt-6 flex flex-wrap justify-center gap-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    className="flex flex-wrap justify-center gap-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                    {/* See My Work - scroll ke section #projects */}
                     <a
                         href="#projects"
-                        className="px-6 py-3 bg-black text-white text-sm font-medium rounded-full hover:bg-gray-800 transition shadow"
+                        className={clsx(
+                            "group px-6 py-3 rounded-full text-sm font-medium transition-all",
+                            "bg-white text-black hover:bg-zinc-200"
+                        )}
                     >
                         See My Work
                     </a>
 
-                    {/* Contact Me - buka email default */}
                     <a
                         href="mailto:z3eiyn@email.com"
-                        className="px-6 py-3 bg-white border border-gray-200 text-gray-800 text-sm font-medium rounded-full hover:bg-gray-100 transition shadow-sm"
+                        className={clsx(
+                            "px-6 py-3 rounded-full text-sm font-medium transition-all",
+                            "bg-zinc-900 text-white border border-zinc-800",
+                            "hover:bg-zinc-800 hover:border-zinc-700"
+                        )}
                     >
                         Contact Me
                     </a>
                 </motion.div>
 
-                {/* Skill Badges */}
+                {/* Skills */}
                 <motion.div
-                    className="mt-6 flex flex-wrap justify-center gap-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    className="flex flex-wrap justify-center gap-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.6 }}
                 >
                     {skills.map(({ label, icon: Icon }, i) => (
                         <motion.div
                             key={label}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 text-gray-700 text-xs font-medium border border-gray-200 backdrop-blur-md shadow-sm"
-                            animate={{ y: [0, -3, 0] }}
-                            transition={{ repeat: Infinity, duration: 2 + i * 0.3, ease: "easeInOut" }}
+                            className={clsx(
+                                "flex items-center gap-2 px-4 py-2 rounded-full",
+                                "bg-zinc-900 border border-zinc-800 text-zinc-400 text-sm",
+                                "hover:border-zinc-700 hover:bg-zinc-800 transition-all cursor-default"
+                            )}
+                            animate={{ y: [0, -4, 0] }}
+                            transition={{
+                                repeat: Infinity,
+                                duration: 2 + i * 0.3,
+                                ease: "easeInOut",
+                            }}
                         >
-                            <Icon className="w-3.5 h-3.5 text-gray-500" />
+                            <Icon className="w-4 h-4 text-zinc-500" />
                             {label}
                         </motion.div>
                     ))}
                 </motion.div>
             </div>
+
+            {/* Bottom Fade */}
+            <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none" />
         </section>
     )
 }
