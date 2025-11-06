@@ -1,76 +1,205 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
+import { useState, useRef, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ProjectCard from '@/components/ui/ProjectCard';
+import clsx from 'clsx';
 
-const projects = [
-    {
-        title: "Lazain Bleu",
-        url: "https://github.com/zeiynz/lazainbleu",
-        desc: "Lazain Bleu is a sleek web app for a luxury perfume brand, Inspired by Faith and Heritage. Built with modern tech and driven by my passion for fragrance and storytelling. (still in the process of development)",
-    },
-    {
-        title: "Gizify",
-        url: "https://github.com/Gizify",
-        desc: "Gizify is an AI-based mobile application for nutrition monitoring in pregnant women and healthy recipe recommendations aimed at preventing stunting. Our goal is to help users maintain a balanced diet effortlessly through smart technology.",
-    },
-    {
-        title: "PetWell",
-        url: "https://github.com/ENTS-H108",
-        desc: "An app that uses camera-based disease detection and offers vet consultations via chat. It also helps you find nearby veterinarians with a user-friendly interface, ensuring your pets get the best care effortlessly.",
-    },
-    {
-        title: "Zeiyn Portfolio UI",
-        url: "https://www.figma.com/community/file/1522636825693990649/portfolio-iamzeiyn-com",
-        desc: "A clean and modern portfolio UI built in Figma — highlighting projects, experience, and digital identity through bold typography, intuitive layout, and seamless UX.",
+interface Project {
+    id: string;
+    title: string;
+    description: string;
+    featured?: boolean;
+    tags: string[];
+    image?: string;
+    github?: string;
+    live?: string;
+}
 
+const FEATURED_PROJECTS: Project[] = [
+    {
+        id: '1',
+        title: 'Lazain Bleu',
+        description: 'Lazain Bleu is a modern full-stack e-commerce platform built for premium brands. It’s fast, scalable, and designed for long-term maintainability.',
+        featured: true,
+        tags: ['TypeScript', 'Next.js', 'Tailwind CSS'],
+        image: '/assets/lazainbleu.png',
+        github: 'https://github.com/lazainbleu',
+        live: 'https://lazainbleu.com',
     },
-]
+    {
+        id: '2',
+        title: 'Gizify',
+        description: 'Gizify is an AI-based mobile application for nutrition monitoring in pregnant women and healthy recipe recommendations aimed at preventing stunting. Our goal is to help users maintain a balanced diet effortlessly through smart technology.',
+        featured: true,
+        tags: ['React Native', 'TypeScript', 'Express.js'],
+        image: '/assets/gizify.png',
+        github: 'https://github.com/Gizify',
+        live: 'https://play.google.com/store/apps/details?id=com.farach.Gizify',
+    },
+    {
+        id: '3',
+        title: 'PetWell',
+        description: 'Petwell: Easy Care for Your Pets. An app that uses camera-based disease detection and offers vet consultations via chat. It also helps you find nearby veterinarians with a user-friendly interface, ensuring your pets get the best care effortlessly. ',
+        featured: true,
+        tags: ['Kotlin', 'Express.js', 'Jupyter Notebook'],
+        image: '/assets/petwell.png',
+        github: 'https://github.com/ENTS-H108',
+        live: 'https://design-system.dev',
+    },
+];
+
+const PROJECTS: Project[] = [
+    {
+        id: '4',
+        title: 'LB Site',
+        description: 'Official promotional website for Lazain Bleu, a luxury perfume brand. Built with Next.js and TypeScript, featuring modern UI, smooth animations, and elegant brand storytelling.',
+        tags: ['Next.js', 'TypeScript', 'TailwindCSS', 'Framer Motion'],
+        github: 'https://github.com/zeiynz/lazainbleu-site',
+        live: '',
+    },
+    {
+        id: '5',
+        title: 'Personal Notes Starter',
+        description: 'A lightweight personal notes app built with modern web technologies, featuring clean UI, fast performance, and easy customization for personal productivity.',
+        tags: ['React', 'Vite', 'JavaScript',],
+        github: 'https://github.com/zeiynz/Personal-Notes-Starter',
+        live: '',
+    },
+    {
+        id: '6',
+        title: 'Bookshelf API',
+        description: 'A RESTful API for managing book collections. Supports CRUD operations, data validation, and modular architecture for scalability and maintainability.',
+        tags: ['Node.js', 'Hapi.js', 'Joi', 'Postman'],
+        github: 'https://github.com/zeiynz/Bookshelf-Api',
+        live: '',
+    },
+    {
+        id: '7',
+        title: 'Linktree',
+        description: 'A simple and responsive personal link page built with HTML and CSS to showcase multiple social and project links in one place.',
+        tags: ['HTML', 'CSS'],
+        github: 'https://github.com/zeiynz/linktree',
+        live: '',
+    },
+];
 
 export default function Projects() {
-    return (
-        <section id="projects" className="relative px-6 py-24 bg-gradient-to-br from-[#f5f7fa] to-[#ffffff]">
-            {/* Title */}
-            <motion.div
-                className="text-center max-w-2xl mx-auto mb-16"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-            >
-                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">My Projects</h2>
-                <p className="text-gray-500 text-base sm:text-lg">
-                    A collection of digital products where code meets creativity built with care, vision, and real purpose.
-                </p>
-            </motion.div>
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
 
-            {/* Project Cards */}
-            <div className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto">
-                {projects.map((project, i) => (
-                    <motion.a
-                        key={project.title}
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                        whileHover={{ y: -4 }}
+    const checkScroll = () => {
+        if (!scrollContainerRef.current) return;
+        const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+        setCanScrollLeft(scrollLeft > 0);
+        setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    };
+
+    useEffect(() => {
+        checkScroll();
+        const container = scrollContainerRef.current;
+        container?.addEventListener('scroll', checkScroll);
+        window.addEventListener('resize', checkScroll);
+
+        return () => {
+            container?.removeEventListener('scroll', checkScroll);
+            window.removeEventListener('resize', checkScroll);
+        };
+    }, []);
+
+    const scroll = (direction: 'left' | 'right') => {
+        if (!scrollContainerRef.current) return;
+        const scrollAmount = 400;
+        const currentScroll = scrollContainerRef.current.scrollLeft;
+        const targetScroll = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+
+        scrollContainerRef.current.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth',
+        });
+    };
+
+    return (
+        <div className="min-h-screen bg-black">
+            {/* Featured Project Section */}
+            <section id="projects" className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+                <div className="mb-16">
+                    <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-500">Featured Works</h2>
+                    <p className="mt-3 max-w-2xl text-lg text-neutral-400">
+                        Showcase of my best projects and recent work
+                    </p>
+                </div>
+
+                <div className="relative">
+                    {/* Navigation Buttons */}
+                    <div className="absolute -left-2 top-1/2 z-20 -translate-y-1/2 sm:left-0">
+                        <button
+                            onClick={() => scroll('left')}
+                            disabled={!canScrollLeft}
+                            aria-label="Scroll left"
+                            className={clsx(
+                                'group rounded-full p-2.5 backdrop-blur-sm transition-all duration-300 border border-neutral-700/50',
+                                canScrollLeft
+                                    ? 'bg-neutral-800/40 hover:border-neutral-600 hover:bg-neutral-700/60'
+                                    : 'bg-neutral-900/20 opacity-30'
+                            )}
+                        >
+                            <ChevronLeft
+                                size={18}
+                                className={clsx('transition-colors duration-300', canScrollLeft ? 'text-neutral-300' : 'text-neutral-600')}
+                            />
+                        </button>
+                    </div>
+
+                    <div className="absolute -right-2 top-1/2 z-20 -translate-y-1/2 sm:right-0">
+                        <button
+                            onClick={() => scroll('right')}
+                            disabled={!canScrollRight}
+                            aria-label="Scroll right"
+                            className={clsx(
+                                'group rounded-full p-2.5 backdrop-blur-sm transition-all duration-300 border border-neutral-700/50',
+                                canScrollRight
+                                    ? 'bg-neutral-800/40 hover:border-neutral-600 hover:bg-neutral-700/60'
+                                    : 'bg-neutral-900/20 opacity-30'
+                            )}
+                        >
+                            <ChevronRight
+                                size={18}
+                                className={clsx('transition-colors duration-300', canScrollRight ? 'text-neutral-300' : 'text-neutral-600')}
+                            />
+                        </button>
+                    </div>
+
+                    {/* Scrollable Container */}
+                    <div
+                        ref={scrollContainerRef}
+                        className="flex gap-6 overflow-x-auto scroll-smooth px-4 sm:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
                     >
-                        <div className="flex justify-between items-start mb-2">
-                            <h3 className="text-lg font-semibold text-gray-800 group-hover:text-violet-400 transition-colors">
-                                {project.title}
-                            </h3>
-                            <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition" />
-                        </div>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                            {project.desc}
-                        </p>
-                    </motion.a>
-                ))}
-            </div>
-        </section>
-    )
+                        {FEATURED_PROJECTS.map((project) => (
+                            <div key={project.id} className="min-w-[80%] sm:min-w-[70%] flex-shrink-0">
+                                <ProjectCard project={project} featured />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Projects Grid Section */}
+            <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+                <div className="mb-16">
+                    <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-500">Other Projects</h2>
+                    <p className="mt-3 max-w-2xl text-lg text-neutral-400">
+                        Explore my portfolio of web applications and digital solutions
+                    </p>
+                </div>
+
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-2">
+                    {PROJECTS.map((project) => (
+                        <ProjectCard key={project.id} project={project} featured={false} />
+                    ))}
+                </div>
+            </section>
+        </div>
+    );
 }

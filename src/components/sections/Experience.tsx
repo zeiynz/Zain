@@ -130,7 +130,7 @@ export default function Experience() {
                     >
                         <Briefcase className="w-4 h-4 text-zinc-500" />
                     </motion.div>
-                    <span className="text-zinc-500 text-xs font-mono tracking-widest">
+                    <span className="text-zinc-400 text-xs font-mono tracking-widest">
                         EXPERIENCE
                     </span>
                 </div>
