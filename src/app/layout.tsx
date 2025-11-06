@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes"
 import Header from "@/components/layout/Header"
 import type { Metadata, Viewport } from "next"
 
+// Font setup
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -11,17 +12,18 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 })
 
-// Global metadata for SEO
+// Global SEO metadata
 export const metadata: Metadata = {
-  metadataBase: new URL("https://zainportfolio.com"), // replace with your domain
+  metadataBase: new URL("https://iamzeiyn.com"),
   title: {
-    default: "Zain | Portfolio",
+    default: "Zain",
     template: "%s | Zain",
   },
   description:
-    "Explore the professional portfolio of Zain — software engineer, investor, and entrepreneur creating innovative digital experiences.",
+    "Explore the professional portfolio of Zain — software engineer, investor, and entrepreneur building impactful digital experiences.",
   keywords: [
     "Zain",
+    "iamzeiyn",
     "Portfolio",
     "Software Engineer",
     "Investor",
@@ -29,19 +31,22 @@ export const metadata: Metadata = {
     "Content Creator",
     "Full Stack Developer",
   ],
-  authors: [{ name: "Zain" }],
+  authors: [{ name: "Zain", url: "https://iamzeiyn.com" }],
   creator: "Zain",
+  alternates: {
+    canonical: "https://iamzeiyn.com",
+  },
   openGraph: {
-    title: "Zain | Portfolio",
+    title: "Zain | Software Engineer, Investor, Entrepreneur",
     description:
-      "Discover Zain’s personal portfolio featuring cutting-edge web projects, investments, and digital ventures.",
-    url: "https://zainportfolio.com",
-    siteName: "Zain Portfolio",
+      "Discover Zain’s portfolio featuring software projects, investments, and digital ventures.",
+    url: "https://iamzeiyn.com",
+    siteName: "iamzeiyn",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg", // optional, replace with real image
+        url: "https://iamzeiyn.com/zain2.png",
         width: 1200,
         height: 630,
         alt: "Zain Portfolio Preview",
@@ -53,8 +58,8 @@ export const metadata: Metadata = {
     title: "Zain | Portfolio",
     description:
       "Professional portfolio by Zain — Software Engineer, Investor, and Entrepreneur.",
-    creator: "@zain", // replace with your handle
-    images: ["/og-image.jpg"],
+    creator: "@iamzeiyn",
+    images: ["https://iamzeiyn.com/zain2.png"],
   },
   icons: {
     icon: "/icon.svg",
@@ -66,17 +71,49 @@ export const metadata: Metadata = {
   },
 }
 
-// Optional: for mobile optimization
+// Mobile viewport
 export const viewport: Viewport = {
   themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
+  viewportFit: "cover",
 }
 
+// Root layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // JSON-LD structured data
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Zain",
+    url: "https://iamzeiyn.com",
+    sameAs: [
+      "https://www.youtube.com/@iamzeiyn",
+      "https://github.com/zeiynz",
+      "https://linkedin.com/in/zeiyn",
+      "https://www.instagram.com/iamzeiyn",
+      "https://www.pinterest.com/iamzeiyn"
+    ],
+    jobTitle: "Software Engineer, Investor, Entrepreneur",
+    worksFor: {
+      "@type": "Organization",
+      name: "Lazain Bleu",
+    },
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preload key assets */}
+        <link rel="preload" href="/zain2.png" as="image" />
+
+        {/* Inject structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${inter.variable} bg-[var(--background)] text-[var(--foreground)] font-sans antialiased`}
       >
