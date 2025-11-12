@@ -1,46 +1,55 @@
-# Portfolio Website 🌟
+<div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?logo=next.js) 
-![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?logo=typescript) 
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.14-skyblue?logo=tailwind-css) 
+# **Portfolio Website** 🚀
+
+![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.14-skyblue?logo=tailwind-css)
 ![pnpm](https://img.shields.io/badge/pnpm-8.0-purple?logo=pnpm)
-![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12.19.3-pink?logo=framer)
-
-Official portfolio website for **Zain**, showcasing projects, skills, and creative work.  
-Built as a **static web app** with interactive animations, clean UI, and responsive design.
+![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12.19.3-violet?logo=framer)
 
 ---
 
-## 🌐 Live Demo
-
-Check out the live website here: [https://iamzeiyn.com](https://iamzeiyn.vercel.app)
+### A clean and modern portfolio that highlights clarity, motion, and detail.  
+Built for performance with smooth visuals and thoughtful design.
 
 ---
 
-## 🛠 Tech Stack
+## 🌐 Live Preview  
+👉 [iamzeiyn.com](https://iamzeiyn.vercel.app)
 
-| Category        | Technology                                                                 |
-|-----------------|----------------------------------------------------------------------------|
-| Framework       | [Next.js](https://nextjs.org/)                                             |
-| Language        | [TypeScript](https://www.typescriptlang.org/)                               |
-| Styling         | [TailwindCSS](https://tailwindcss.com/)                                     |
-| Animations      | [Framer Motion](https://www.framer.com/motion/) & `motion`                  |
-| Icons           | [Lucide React](https://lucide.dev/) & [Tabler Icons](https://tabler-icons.io/) |
-| Utilities       | `clsx`, `tailwind-merge`                                                   |
+---
+
+</div>
+
+## 🧩 Tech Stack
+
+| Category        | Tools & Libraries                                                                 |
+|-----------------|------------------------------------------------------------------------------------|
+| Framework       | [Next.js](https://nextjs.org/) — App Router, Static Rendering                      |
+| Language        | [TypeScript](https://www.typescriptlang.org/)                                      |
+| Styling         | [TailwindCSS](https://tailwindcss.com/) with custom tokens & utilities              |
+| Animations      | [Framer Motion](https://www.framer.com/motion/) — fluid motion & subtle glitch      |
+| Icons           | [Lucide React](https://lucide.dev/) · [Tabler Icons](https://tabler-icons.io/)     |
+| Utilities       | `clsx`, `tailwind-merge`, `react-wrap-balancer`                                   |
 | Themes & SEO    | [Next Themes](https://github.com/pacocoursey/next-themes), [Next SEO](https://github.com/garmeeh/next-seo), [Next Sitemap](https://github.com/iamvishnusankar/next-sitemap) |
 
-**Dev Tools & Plugins:**
-- ESLint (`eslint-config-next`)  
-- PostCSS & Autoprefixer  
-- Tailwind Plugins (optional)  
+**Development Stack**
+- Linting: ESLint (`eslint-config-next`)  
+- Post-processing: PostCSS + Autoprefixer  
+- Optional Tailwind plugins for enhanced layout control  
 
 ---
 
-## ⚡ Quick Start (pnpm)
-
-Clone the repo and install dependencies:
+## ⚡ Quick Start
 
 ```bash
+# Clone the repository
 git clone https://github.com/zeiynz/zain.git
 cd zain
+
+# Install dependencies
 pnpm install
+
+# Run development server
+pnpm dev
