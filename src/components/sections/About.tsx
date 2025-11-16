@@ -4,19 +4,24 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import Card from "@/components/ui/Card";
-import { Sparkles, Code2, Zap } from "lucide-react";
+import { Sparkles, Code2, MessageCircle, GraduationCap } from "lucide-react";
 
-type Particle = { top: string; left: string; delay: number; size: number };
-
+// Data untuk Teknologi dan Pengalaman
 const technologies = [
     "TypeScript", "React", "Next.js",
     "Tailwind CSS", "TanStack Query"
 ];
 
 const experiences = [
-    { role: "Founder", company: "Lazain Bleu", detail: "Besides being passionate about tech, I’m also deeply interested in perfumery and am currently building Lazain Bleu, a modern luxury fragrance brand.", color: "blue" },
-    { role: "BSc", company: "Computer Science", detail: "Finished my degree after mastering the fine art of surviving deadlines, group projects, and too many cups of coffee.", color: "cyan" }
+    {
+        role: "BSc",
+        company: "Computer Science",
+        detail: "Survived the projects, learned the essentials, and ended up loving the craft more than expected.",
+        color: "blue"
+    }
 ];
+
+type Particle = { top: string; left: string; delay: number; size: number };
 
 export default function About() {
     const [particles, setParticles] = useState<Particle[]>([]);
@@ -30,7 +35,7 @@ export default function About() {
         setParticles(arr);
     }, []);
 
-    // cursor glow
+    // cursor glow effect setup
     const mouseX = useMotionValue(-9999);
     const mouseY = useMotionValue(-9999);
     const cursorX = useSpring(mouseX, { damping: 30, stiffness: 200 });
@@ -98,8 +103,10 @@ export default function About() {
 
             {/* main content */}
             <div className="relative z-10 w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-                {/* Left Side */}
+
+                {/* Left Side (Narrative & Skills) */}
                 <div className="space-y-8">
+                    {/* Header: ABOUT ME (Unchanged) */}
                     <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-zinc-900/40 border border-zinc-800/40 backdrop-blur-sm">
                         <motion.div
                             animate={{ rotate: 360 }}
@@ -112,14 +119,11 @@ export default function About() {
                         </span>
                     </div>
 
-                    <div className="space-y-3">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                            <span className="block text-white">Software Engineer</span>
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] via-[#06b6d4] to-[#10b981]">
-                                with a Founder’s Mindset
-                            </span>
-                        </h1>
-
+                    {/* Narasi yang Direvisi */}
+                    <div className="space-y-4">
+                        <p className="text-lg text-zinc-300 leading-relaxed max-w-lg">
+                            I am a recently graduated Software Engineer with a strong focus on the React Ecosystem and UI scalability. Beyond my technical endeavors, I channel my entrepreneurial spirit into establishing and growing my brand, Lazain Bleu.
+                        </p>
                         <motion.div
                             className="w-24 h-1 rounded-full bg-gradient-to-r from-[#6366f1] to-[#06b6d4]"
                             initial={{ width: 0 }}
@@ -129,7 +133,7 @@ export default function About() {
                         />
                     </div>
 
-                    {/* Experiences */}
+                    {/* Experiences (Pendidikan) */}
                     <div className="grid grid-cols-1 gap-3">
                         {experiences.map((exp, i) => (
                             <motion.div
@@ -147,9 +151,7 @@ export default function About() {
                                         <span
                                             className={clsx(
                                                 "font-medium",
-                                                exp.color === "blue"
-                                                    ? "text-blue-400"
-                                                    : "text-cyan-400"
+                                                exp.color === "blue" ? "text-blue-400" : "text-cyan-400"
                                             )}
                                         >
                                             {exp.company}
@@ -157,7 +159,7 @@ export default function About() {
                                     </div>
                                     <p className="text-zinc-500 text-sm">{exp.detail}</p>
                                 </div>
-                                <Zap className="w-5 h-5 text-zinc-500" />
+                                <GraduationCap className="w-5 h-5 text-zinc-500" />
                             </motion.div>
                         ))}
                     </div>
@@ -167,7 +169,7 @@ export default function About() {
                         <div className="flex items-center gap-3 mb-3">
                             <div className="h-px w-8 bg-zinc-800" />
                             <span className="text-xs font-mono text-zinc-500 tracking-widest">
-                                STACK
+                                HERE ARE MY PREFERRED TECHNOLOGIES
                             </span>
                         </div>
 
@@ -187,57 +189,65 @@ export default function About() {
                         </div>
                     </div>
 
+                    {/* Hobi/Minat Bisnis */}
                     <div className="text-zinc-400 max-w-md text-sm leading-relaxed">
                         <p>
-                            When I’m not coding, I spend time exploring science, playing games, or creating content for fun.
-                            I’m also interested in business.
+                            Outside of development, I enjoy exploring science and business concepts, playing games, or creating content for fun.
                         </p>
                     </div>
                 </div>
 
-                {/* Right Side */}
+                {/* Right Side (Card) - HANYA FOTO & CTA */}
                 <div className="w-full flex justify-center lg:justify-end">
                     <div className="relative w-full max-w-sm">
                         <div className="rounded-2xl p-1 bg-gradient-to-r from-[#0f0f11] via-[#1a1a1d] to-[#2a2a30] shadow-[0_0_25px_rgba(255,255,255,0.05)]">
                             <div className="bg-zinc-900/60 border border-zinc-800/50 rounded-xl p-4 backdrop-blur-sm">
-                                {/* Profile Card */}
-                                <div className="mx-auto w-full max-w-xs aspect-square">
-                                    <Card src="/images/zain2.png" alt="Profile" />
-                                </div>
 
-                                {/* NFT metadata */}
-                                <div className="mt-4 flex items-center justify-between gap-3">
-                                    <div>
-                                        <div className="text-xs text-zinc-400 font-mono">IDENTITY</div>
-                                        <div className="text-lg font-semibold text-white">
-                                            ZAIN.Ξ
-                                        </div>
+                                {/* Wrapper untuk menyelaraskan lebar Foto dan Tombol */}
+                                <div className="w-full max-w-xs mx-auto">
+
+                                    {/* Profile Card (Foto) */}
+                                    {/* Asumsi Card component sudah memiliki border styling yang benar */}
+                                    <div className="w-full aspect-square">
+                                        {/* Ganti dengan path foto Anda */}
+                                        <Card src="/images/zain2.png" alt="Profile" />
                                     </div>
 
-                                    <div className="text-right">
-                                        <div className="text-xs text-zinc-400 font-mono">ROLE</div>
-                                        <div className="text-xs font-semibold text-[#06b6d4]">
-                                            Software Engineer
-                                        </div>
-                                    </div>
-                                </div>
+                                    {/* CTA - Tombol Connect dan Chat yang Selaras */}
+                                    <div className="mt-4 flex gap-2 w-full">
 
-                                {/* CTA */}
-                                <div className="mt-4 flex gap-2">
-                                    <button
-                                        onClick={() => window.open("https://www.linkedin.com/in/zeiyn", "_blank")}
-                                        className="flex-1 px-4 py-2 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#06b6d4] text-black font-semibold shadow"
-                                    >
-                                        Connect With Me
-                                    </button>
-                                    <button className="px-3 py-2 rounded-lg border border-zinc-800 text-zinc-300">
-                                        Chat
-                                    </button>
+                                        {/* 1. Connect Button (Primary Action) */}
+                                        <button
+                                            onClick={() => window.open("https://www.linkedin.com/in/zeiyn", "_blank")}
+                                            className={clsx(
+                                                "w-1/2 flex items-center justify-center gap-1",
+                                                "px-4 py-2 rounded-lg text-sm font-semibold shadow",
+                                                "bg-gradient-to-r from-indigo-500 to-cyan-500 text-black",
+                                                "hover:shadow-lg hover:shadow-indigo-500/30 transition-shadow"
+                                            )}
+                                        >
+                                            Connect
+                                        </button>
+
+                                        {/* 2. Chat Button (Secondary Action) */}
+                                        <button
+                                            // Ganti dengan fungsi chat yang sesuai
+                                            className={clsx(
+                                                "w-1/2 flex items-center justify-center gap-1",
+                                                "px-3 py-2 rounded-lg text-sm font-medium transition-all",
+                                                "bg-zinc-900/40 text-zinc-300 border border-zinc-800",
+                                                "hover:text-indigo-400 hover:border-indigo-500"
+                                            )}
+                                        >
+                                            <MessageCircle className="w-4 h-4" />
+                                            Chat
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* decorative floating frames */}
+                        {/* decorative floating frames (Unchanged) */}
                         <motion.div
                             className="absolute -top-6 -left-6 w-20 h-20 rounded-2xl border border-zinc-800/50"
                             animate={{ rotate: 360 }}
