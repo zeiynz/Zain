@@ -156,7 +156,7 @@ export default function Hero() {
                         className="text-5xl sm:text-7xl font-bold text-white leading-tight"
                     >
                         Hi, I'm{" "}
-                        <span className="text-zinc-400">Zain</span>
+                        <span className="text-indigo-400">Zain</span>
                     </motion.h1>
 
                     <motion.p
@@ -165,9 +165,8 @@ export default function Hero() {
                         transition={{ delay: 0.4, duration: 0.6 }}
                         className="text-zinc-500 text-lg sm:text-xl max-w-2xl leading-relaxed mx-auto"
                     >
-                        Building immersive UI with React, Next.js & Tailwind.
-                        <br />
-                        Passionate about design systems and clean code.
+                        I build immersive UIs leveraging the modern React Ecosystem.
+                        My focus is on robust design systems and writing clean, scalable code.
                     </motion.p>
                 </div>
 
