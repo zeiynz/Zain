@@ -121,8 +121,8 @@ export default function About() {
 
                     {/* Narasi yang Direvisi */}
                     <div className="space-y-4">
-                        <p className="text-lg text-zinc-300 leading-relaxed max-w-lg">
-                            I am a recently graduated Software Engineer with a strong focus on the React Ecosystem and UI scalability. Beyond my technical endeavors, I channel my entrepreneurial spirit into establishing and growing my brand, Lazain Bleu.
+                        <p className="text-lg text-zinc-300 leading-relaxed max-w-lg text-justify">
+                            I recently graduated in Computer Science and now work as a Software Engineer specializing in the React ecosystem and scalable UI development. I’m also building my brand, Lazain Bleu.
                         </p>
                         <motion.div
                             className="w-24 h-1 rounded-full bg-gradient-to-r from-[#6366f1] to-[#06b6d4]"
@@ -190,9 +190,10 @@ export default function About() {
                     </div>
 
                     {/* Hobi/Minat Bisnis */}
-                    <div className="text-zinc-400 max-w-md text-sm leading-relaxed">
+                    <div className="text-zinc-400 max-w-md text-sm leading-relaxed text-justify">
                         <p>
-                            Outside of development, I enjoy exploring science and business concepts, playing games, or creating content for fun.
+                            Outside of development, I enjoy exploring science and business concepts,
+                            playing games, or creating content for fun.
                         </p>
                     </div>
                 </div>

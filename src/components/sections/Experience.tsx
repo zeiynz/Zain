@@ -215,7 +215,7 @@ export default function Experience() {
                                     {exp.company}
                                 </p>
 
-                                <p className="text-zinc-400 text-sm leading-relaxed mb-3 sm:mb-4">
+                                <p className="text-zinc-400 text-sm leading-relaxed mb-3 sm:mb-4 text-justify">
                                     {exp.description}
                                 </p>
 
