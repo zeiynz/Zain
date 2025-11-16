@@ -74,7 +74,8 @@ export default function ProjectCard({ project, featured }: ProjectCardProps) {
                         <p
                             className={clsx(
                                 'text-sm leading-relaxed text-neutral-300 transition-all duration-500',
-                                isHovering ? 'max-h-20 opacity-100' : 'max-h-0 overflow-hidden opacity-0'
+                                'max-h-0 overflow-hidden', // Menghilangkan deskripsi saat tidak hover
+                                isHovering ? 'max-h-20 opacity-100' : 'opacity-0'
                             )}
                         >
                             {project.description}

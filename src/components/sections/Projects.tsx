@@ -52,10 +52,10 @@ const FEATURED_PROJECTS: Project[] = [
 const PROJECTS: Project[] = [
     {
         id: '4',
-        title: 'LB Site',
-        description: 'Official promotional website for Lazain Bleu, a luxury perfume brand. Built with Next.js and TypeScript, featuring modern UI, smooth animations, and elegant brand storytelling.',
+        title: 'Spiderverse Ui',
+        description: 'A modern animated landing page built with Next.js and TypeScript, featuring clean components, smooth transitions, and optimized performance.',
         tags: ['Next.js', 'TypeScript', 'TailwindCSS', 'Framer Motion'],
-        github: 'https://github.com/zeiynz/lazainbleu-site',
+        github: 'https://github.com/zeiynz/spiderverse-ui',
         live: '',
     },
     {
@@ -77,7 +77,7 @@ const PROJECTS: Project[] = [
     {
         id: '7',
         title: 'Linktree',
-        description: 'A simple and responsive personal link page built with HTML and CSS to showcase multiple social and project links in one place.',
+        description: 'A simple and responsive personal link page built with HTML and CSS to showcase multiple social links in one place.',
         tags: ['HTML', 'CSS'],
         github: 'https://github.com/zeiynz/linktree',
         live: '',
