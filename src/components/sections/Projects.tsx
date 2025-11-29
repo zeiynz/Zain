@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProjectCard from '@/components/ui/ProjectCard';
 import clsx from 'clsx';
@@ -16,6 +16,7 @@ interface Project {
     live?: string;
 }
 
+// Featured projects data
 const FEATURED_PROJECTS: Project[] = [
     {
         id: '1',
@@ -30,7 +31,7 @@ const FEATURED_PROJECTS: Project[] = [
     {
         id: '2',
         title: 'Gizify',
-        description: 'Gizify is an AI-based mobile application for nutrition monitoring in pregnant women and healthy recipe recommendations aimed at preventing stunting. Our goal is to help users maintain a balanced diet effortlessly through smart technology.',
+        description: 'Gizify is an AI-based mobile app for nutrition monitoring in pregnant women and healthy recipe recommendations aimed at preventing stunting.',
         featured: true,
         tags: ['React Native', 'TypeScript', 'Express.js'],
         image: '/assets/gizify.png',
@@ -40,7 +41,7 @@ const FEATURED_PROJECTS: Project[] = [
     {
         id: '3',
         title: 'PetWell',
-        description: 'Petwell: Easy Care for Your Pets. An app that uses camera-based disease detection and offers vet consultations via chat. It also helps you find nearby veterinarians with a user-friendly interface, ensuring your pets get the best care effortlessly. ',
+        description: 'PetWell: Easy Care for Your Pets. An app with camera-based disease detection, vet consultations via chat, and nearby vet discovery.',
         featured: true,
         tags: ['Kotlin', 'Express.js', 'Jupyter Notebook'],
         image: '/assets/petwell.png',
@@ -49,10 +50,11 @@ const FEATURED_PROJECTS: Project[] = [
     },
 ];
 
+// Other projects data
 const PROJECTS: Project[] = [
     {
         id: '4',
-        title: 'Spiderverse Ui',
+        title: 'Spiderverse UI',
         description: 'A modern animated landing page built with Next.js and TypeScript, featuring clean components, smooth transitions, and optimized performance.',
         tags: ['Next.js', 'TypeScript', 'TailwindCSS', 'Framer Motion'],
         github: 'https://github.com/zeiynz/spiderverse-ui',
@@ -61,15 +63,15 @@ const PROJECTS: Project[] = [
     {
         id: '5',
         title: 'Personal Notes Starter',
-        description: 'A lightweight personal notes app built with modern web technologies, featuring clean UI, fast performance, and easy customization for personal productivity.',
-        tags: ['React', 'Vite', 'JavaScript',],
+        description: 'A lightweight personal notes app built with modern web technologies, featuring clean UI, fast performance, and easy customization.',
+        tags: ['React', 'Vite', 'JavaScript'],
         github: 'https://github.com/zeiynz/Personal-Notes-Starter',
         live: '',
     },
     {
         id: '6',
         title: 'Bookshelf API',
-        description: 'A RESTful API for managing book collections. Supports CRUD operations, data validation, and modular architecture for scalability and maintainability.',
+        description: 'A RESTful API for managing book collections. Supports CRUD operations, data validation, and modular architecture.',
         tags: ['Node.js', 'Hapi.js', 'Joi', 'Postman'],
         github: 'https://github.com/zeiynz/Bookshelf-Api',
         live: '',
@@ -111,18 +113,17 @@ export default function Projects() {
     const scroll = (direction: 'left' | 'right') => {
         if (!scrollContainerRef.current) return;
         const scrollAmount = 400;
-        const currentScroll = scrollContainerRef.current.scrollLeft;
-        const targetScroll = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
-
         scrollContainerRef.current.scrollTo({
-            left: targetScroll,
+            left: direction === 'left'
+                ? scrollContainerRef.current.scrollLeft - scrollAmount
+                : scrollContainerRef.current.scrollLeft + scrollAmount,
             behavior: 'smooth',
         });
     };
 
     return (
         <div className="min-h-screen bg-black">
-            {/* Featured Project Section */}
+            {/* Featured Projects */}
             <section id="projects" className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
                 <div className="mb-16">
                     <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-500">Featured Works</h2>
@@ -132,7 +133,7 @@ export default function Projects() {
                 </div>
 
                 <div className="relative">
-                    {/* Navigation Buttons */}
+                    {/* Scroll Buttons */}
                     <div className="absolute -left-2 top-1/2 z-20 -translate-y-1/2 sm:left-0">
                         <button
                             onClick={() => scroll('left')}
@@ -140,15 +141,10 @@ export default function Projects() {
                             aria-label="Scroll left"
                             className={clsx(
                                 'group rounded-full p-2.5 backdrop-blur-sm transition-all duration-300 border border-neutral-700/50',
-                                canScrollLeft
-                                    ? 'bg-neutral-800/40 hover:border-neutral-600 hover:bg-neutral-700/60'
-                                    : 'bg-neutral-900/20 opacity-30'
+                                canScrollLeft ? 'bg-neutral-800/40 hover:border-neutral-600 hover:bg-neutral-700/60' : 'bg-neutral-900/20 opacity-30'
                             )}
                         >
-                            <ChevronLeft
-                                size={18}
-                                className={clsx('transition-colors duration-300', canScrollLeft ? 'text-neutral-300' : 'text-neutral-600')}
-                            />
+                            <ChevronLeft size={18} className={clsx('transition-colors duration-300', canScrollLeft ? 'text-neutral-300' : 'text-neutral-600')} />
                         </button>
                     </div>
 
@@ -159,19 +155,14 @@ export default function Projects() {
                             aria-label="Scroll right"
                             className={clsx(
                                 'group rounded-full p-2.5 backdrop-blur-sm transition-all duration-300 border border-neutral-700/50',
-                                canScrollRight
-                                    ? 'bg-neutral-800/40 hover:border-neutral-600 hover:bg-neutral-700/60'
-                                    : 'bg-neutral-900/20 opacity-30'
+                                canScrollRight ? 'bg-neutral-800/40 hover:border-neutral-600 hover:bg-neutral-700/60' : 'bg-neutral-900/20 opacity-30'
                             )}
                         >
-                            <ChevronRight
-                                size={18}
-                                className={clsx('transition-colors duration-300', canScrollRight ? 'text-neutral-300' : 'text-neutral-600')}
-                            />
+                            <ChevronRight size={18} className={clsx('transition-colors duration-300', canScrollRight ? 'text-neutral-300' : 'text-neutral-600')} />
                         </button>
                     </div>
 
-                    {/* Scrollable Container */}
+                    {/* Scrollable Featured Projects */}
                     <div
                         ref={scrollContainerRef}
                         className="flex gap-6 overflow-x-auto scroll-smooth px-4 sm:px-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -185,7 +176,7 @@ export default function Projects() {
                 </div>
             </section>
 
-            {/* Projects Grid Section */}
+            {/* Other Projects */}
             <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
                 <div className="mb-16">
                     <h2 className="text-xs font-semibold uppercase tracking-widest text-neutral-500">Other Projects</h2>

@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Preload key assets */}
-        <link rel="preload" href="/zain2.png" as="image" />
+        <link rel="preload" href="/images/zain2.png" as="image" />
 
         {/* Inject structured data */}
         <script

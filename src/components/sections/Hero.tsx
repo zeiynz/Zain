@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useEffect, useState } from "react"
 import { Atom, Layout, Code2, Wind, Palette } from "lucide-react"
 import clsx from "clsx"
+import Button from "@/components/ui/button"
 
 const skills = [
     { label: "React", icon: Atom },
@@ -14,13 +15,10 @@ const skills = [
 ]
 
 export default function Hero() {
-    const [particles, setParticles] = useState<
-        { top: string; left: string; delay: number; key: number; size: number }[]
-    >([])
+    const [particles, setParticles] = useState<{ top: string; left: string; delay: number; key: number; size: number }[]>([])
 
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
-
     const springConfig = { damping: 25, stiffness: 150 }
     const smoothMouseX = useSpring(mouseX, springConfig)
     const smoothMouseY = useSpring(mouseY, springConfig)
@@ -117,10 +115,7 @@ export default function Hero() {
                         animate={{ rotate: 360 }}
                         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     >
-                        <div className={clsx(
-                            "absolute inset-0 border-2 border-zinc-700 rounded-2xl",
-                            "backdrop-blur-sm"
-                        )} />
+                        <div className={clsx("absolute inset-0 border-2 border-zinc-700 rounded-2xl", "backdrop-blur-sm")} />
                     </motion.div>
 
                     <motion.div
@@ -128,10 +123,7 @@ export default function Hero() {
                         animate={{ rotate: -360 }}
                         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                     >
-                        <div className={clsx(
-                            "absolute inset-0 border-2 border-zinc-600 rounded-xl",
-                            "backdrop-blur-sm"
-                        )} />
+                        <div className={clsx("absolute inset-0 border-2 border-zinc-600 rounded-xl", "backdrop-blur-sm")} />
                     </motion.div>
 
                     {/* Center Dot */}
@@ -155,8 +147,7 @@ export default function Hero() {
                         transition={{ delay: 0.3, duration: 0.6 }}
                         className="text-5xl sm:text-7xl font-bold text-white leading-tight"
                     >
-                        Hi, I'm{" "}
-                        <span className="text-indigo-400">Zain</span>
+                        Hi, I'm <span className="text-indigo-400">Zain</span>
                     </motion.h1>
 
                     <motion.p
@@ -165,8 +156,7 @@ export default function Hero() {
                         transition={{ delay: 0.4, duration: 0.6 }}
                         className="text-zinc-500 text-lg sm:text-xl max-w-2xl leading-relaxed mx-auto"
                     >
-                        I build immersive UIs leveraging the modern React Ecosystem.
-                        My focus is on robust design systems and writing clean, scalable code.
+                        I build immersive UIs leveraging the modern React Ecosystem. My focus is on robust design systems and writing clean, scalable code.
                     </motion.p>
                 </div>
 
@@ -177,26 +167,10 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                    <a
-                        href="#projects"
-                        className={clsx(
-                            "group px-6 py-3 rounded-full text-sm font-medium transition-all",
-                            "bg-white text-black hover:bg-zinc-200"
-                        )}
-                    >
-                        See My Work
-                    </a>
-
-                    <a
-                        href="mailto:z3eiyn@email.com"
-                        className={clsx(
-                            "px-6 py-3 rounded-full text-sm font-medium transition-all",
-                            "bg-zinc-900 text-white border border-zinc-800",
-                            "hover:bg-zinc-800 hover:border-zinc-700"
-                        )}
-                    >
+                    <Button href="#projects">See My Work</Button>
+                    <Button href="mailto:z3eiyn@email.com" variant="secondary">
                         Contact Me
-                    </a>
+                    </Button>
                 </motion.div>
 
                 {/* Skills */}
