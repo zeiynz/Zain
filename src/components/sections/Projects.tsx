@@ -23,7 +23,7 @@ const FEATURED_PROJECTS: Project[] = [
         title: 'Lazain Bleu',
         description: 'Lazain Bleu is a modern full-stack e-commerce platform built for premium brands. It’s fast, scalable, and designed for long-term maintainability.',
         featured: true,
-        tags: ['TypeScript', 'Next.js', 'Tailwind CSS'],
+        tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
         image: '/assets/lazainbleu.png',
         github: 'https://github.com/lazainbleu',
         live: 'https://lazainbleu.com',
@@ -62,6 +62,14 @@ const PROJECTS: Project[] = [
     },
     {
         id: '5',
+        title: 'Sentient Terminal',
+        description: 'A terminal-inspired financial dashboard UI built with modern React tooling, focusing on complex layouts, reusable components, and interactive data visualization.',
+        tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Radix UI'],
+        github: 'https://github.com/zeiynz/Sentient-Terminal',
+        live: '',
+    },
+    {
+        id: '6',
         title: 'Personal Notes Starter',
         description: 'A lightweight personal notes app built with modern web technologies, featuring clean UI, fast performance, and easy customization.',
         tags: ['React', 'Vite', 'JavaScript'],
@@ -69,21 +77,14 @@ const PROJECTS: Project[] = [
         live: '',
     },
     {
-        id: '6',
+        id: '7',
         title: 'Bookshelf API',
         description: 'A RESTful API for managing book collections. Supports CRUD operations, data validation, and modular architecture.',
         tags: ['Node.js', 'Hapi.js', 'Joi', 'Postman'],
         github: 'https://github.com/zeiynz/Bookshelf-Api',
         live: '',
     },
-    {
-        id: '7',
-        title: 'Linktree',
-        description: 'A simple and responsive personal link page built with HTML and CSS to showcase multiple social links in one place.',
-        tags: ['HTML', 'CSS'],
-        github: 'https://github.com/zeiynz/linktree',
-        live: '',
-    },
+
 ];
 
 export default function Projects() {
