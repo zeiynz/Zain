@@ -4,17 +4,9 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
 import clsx from "clsx"
 import { Briefcase, ArrowUpRight, Sparkles } from "lucide-react"
+import { experiences, ExperienceItem } from "@/lib/experiencesData"
 
 type Particle = { top: string; left: string; delay: number; size: number }
-
-interface ExperienceItem {
-    role: string
-    company: string
-    year: string
-    description: string
-    tags: string[]
-    link: string
-}
 
 export default function Experience() {
     const [particles, setParticles] = useState<Particle[]>([])
@@ -24,40 +16,18 @@ export default function Experience() {
         target: containerRef,
         offset: ["start end", "end start"],
     })
-
     const lineHeight = useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"])
 
+    // Generate particles once
     useEffect(() => {
-        setParticles(
-            Array.from({ length: 12 }).map(() => ({
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                delay: Math.random() * 5,
-                size: Math.random() * 2 + 1,
-            }))
-        )
+        const generated: Particle[] = Array.from({ length: 12 }).map(() => ({
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            delay: Math.random() * 5,
+            size: Math.random() * 2 + 1,
+        }))
+        setParticles(generated)
     }, [])
-
-    const experiences: ExperienceItem[] = [
-        {
-            role: "Founder",
-            company: "Lazain Bleu",
-            year: "2025 — Present",
-            description:
-                "Building Lazain Bleu from the ground up, defining its brand identity, strategy, and market presence. The brand combines French perfumery with Islamic and Andalusian heritage, delivering refined and contemporary fragrance experiences.",
-            tags: ["Brand Strategist"],
-            link: "https://www.instagram.com/lazainbleu/",
-        },
-        {
-            role: "Cloud Computing",
-            company: "Bangkit Academy led by Google, GoTo, and Traveloka",
-            year: "2024",
-            description:
-                "Completed a cloud computing program, mastering GCP, Kubernetes, and Terraform. Built scalable applications and deployed microservices.",
-            tags: ["Google Cloud", "Kubernetes", "Docker", "Terraform"],
-            link: "https://grow.google/intl/id_id/bangkit/",
-        },
-    ]
 
     return (
         <section
@@ -130,9 +100,7 @@ export default function Experience() {
                     >
                         <Briefcase className="w-4 h-4 text-zinc-500" />
                     </motion.div>
-                    <span className="text-zinc-400 text-xs font-mono tracking-widest">
-                        EXPERIENCE
-                    </span>
+                    <span className="text-zinc-400 text-xs font-mono tracking-widest">EXPERIENCE</span>
                 </div>
 
                 <h2 className="text-4xl sm:text-6xl font-bold text-white leading-tight mb-4">
@@ -159,105 +127,112 @@ export default function Experience() {
 
                 <div className="space-y-14 sm:space-y-20">
                     {experiences.map((exp, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, delay: i * 0.1 }}
-                            className={clsx(
-                                "relative flex flex-col sm:flex-row items-start gap-8 sm:gap-12",
-                                i % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
-                            )}
-                        >
-                            <div className="absolute left-4 sm:left-1/2 top-0 sm:-translate-x-1/2 flex items-center justify-center">
-                                <motion.div
-                                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.1 + 0.2 }}
-                                />
-                            </div>
-
-                            <div className="hidden sm:block sm:w-[45%]" />
-
-                            {/* Card container */}
-                            <motion.div
-                                whileHover={{ scale: 1.02, y: -4 }}
-                                transition={{ duration: 0.3 }}
-                                className={clsx(
-                                    "relative group w-full sm:w-[45%] sm:ml-0",
-                                    "p-5 sm:p-6 rounded-2xl",
-                                    "bg-zinc-900/30 border border-zinc-800/50",
-                                    "hover:bg-zinc-900/50 hover:border-zinc-700/50",
-                                    "transition-all backdrop-blur-sm"
-                                )}
-                            >
-                                <motion.div
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 + 0.4, duration: 0.5 }}
-                                    className={clsx(
-                                        "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-3 sm:mb-4",
-                                        "bg-zinc-900/50 border border-zinc-800/50 text-zinc-400 text-xs font-mono"
-                                    )}
-                                >
-                                    <Sparkles className="w-3 h-3" />
-                                    {exp.year}
-                                </motion.div>
-
-                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-zinc-200 transition-colors">
-                                    {exp.role}
-                                </h3>
-                                <p className="text-zinc-500 font-medium mb-3 sm:mb-4">
-                                    {exp.company}
-                                </p>
-
-                                <p className="text-zinc-400 text-sm leading-relaxed mb-3 sm:mb-4 text-justify">
-                                    {exp.description}
-                                </p>
-
-                                <div className="flex flex-wrap gap-2">
-                                    {exp.tags.map((tag, j) => (
-                                        <motion.span
-                                            key={j}
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{
-                                                delay: i * 0.1 + 0.5 + j * 0.05,
-                                                duration: 0.3,
-                                            }}
-                                            whileHover={{ scale: 1.05 }}
-                                            className={clsx(
-                                                "px-3 py-1 rounded-lg text-xs font-medium",
-                                                "bg-zinc-900 border border-zinc-800 text-zinc-400",
-                                                "hover:border-zinc-700 hover:text-zinc-300 transition-all"
-                                            )}
-                                        >
-                                            {tag}
-                                        </motion.span>
-                                    ))}
-                                </div>
-
-                                {/* Icon link only clickable */}
-                                <motion.a
-                                    href={exp.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                    initial={{ x: -5, y: 5 }}
-                                    whileHover={{ x: 0, y: 0 }}
-                                >
-                                    <ArrowUpRight className="w-5 h-5 text-zinc-600 hover:text-zinc-300 transition-colors" />
-                                </motion.a>
-                            </motion.div>
-                        </motion.div>
+                        <ExperienceCard key={i} exp={exp} index={i} />
                     ))}
                 </div>
             </div>
         </section>
+    )
+}
+
+// Separate component for card for better performance
+interface CardProps {
+    exp: ExperienceItem
+    index: number
+}
+
+const ExperienceCard = ({ exp, index }: CardProps) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className={clsx(
+                "relative flex flex-col sm:flex-row items-start gap-8 sm:gap-12",
+                index % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"
+            )}
+        >
+            <div className="absolute left-4 sm:left-1/2 top-0 sm:-translate-x-1/2 flex items-center justify-center">
+                <motion.div
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                />
+            </div>
+
+            <div className="hidden sm:block sm:w-[45%]" />
+
+            <motion.div
+                whileHover={{ scale: 1.02, y: -4 }}
+                transition={{ duration: 0.3 }}
+                className={clsx(
+                    "relative group w-full sm:w-[45%] sm:ml-0",
+                    "p-5 sm:p-6 rounded-2xl",
+                    "bg-zinc-900/30 border border-zinc-800/50",
+                    "hover:bg-zinc-900/50 hover:border-zinc-700/50",
+                    "transition-all backdrop-blur-sm"
+                )}
+            >
+                <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.4, duration: 0.5 }}
+                    className={clsx(
+                        "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg mb-3 sm:mb-4",
+                        "bg-zinc-900/50 border border-zinc-800/50 text-zinc-400 text-xs font-mono"
+                    )}
+                >
+                    <Sparkles className="w-3 h-3" />
+                    {exp.year}
+                </motion.div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-zinc-200 transition-colors">
+                    {exp.role}
+                </h3>
+                <p className="text-zinc-500 font-medium mb-3 sm:mb-4">{exp.company}</p>
+
+                <p className="text-zinc-400 text-sm leading-relaxed mb-3 sm:mb-4 text-justify">
+                    {exp.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                    {exp.tags.map((tag, j) => (
+                        <motion.span
+                            key={j}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{
+                                delay: index * 0.1 + 0.5 + j * 0.05,
+                                duration: 0.3,
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            className={clsx(
+                                "px-3 py-1 rounded-lg text-xs font-medium",
+                                "bg-zinc-900 border border-zinc-800 text-zinc-400",
+                                "hover:border-zinc-700 hover:text-zinc-300 transition-all"
+                            )}
+                        >
+                            {tag}
+                        </motion.span>
+                    ))}
+                </div>
+
+                <motion.a
+                    href={exp.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity"
+                    initial={{ x: -5, y: 5 }}
+                    whileHover={{ x: 0, y: 0 }}
+                >
+                    <ArrowUpRight className="w-5 h-5 text-zinc-600 hover:text-zinc-300 transition-colors" />
+                </motion.a>
+            </motion.div>
+        </motion.div>
     )
 }
