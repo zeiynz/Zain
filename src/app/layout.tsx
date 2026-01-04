@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Zain",
   },
   description:
-    "Explore the professional portfolio of Zain — software engineer, investor, and entrepreneur building impactful digital experiences.",
+    "Zain — Software engineer, investor, and entrepreneur.",
   keywords: [
     "Zain",
     "iamzeiyn",
@@ -37,16 +37,16 @@ export const metadata: Metadata = {
     canonical: "https://iamzeiyn.com",
   },
   openGraph: {
-    title: "Zain | Software Engineer, Investor, Entrepreneur",
+    title: "Zain S.",
     description:
-      "Discover Zain’s portfolio featuring software projects, investments, and digital ventures.",
+      "Zain — Software engineer, investor, and entrepreneur.",
     url: "https://iamzeiyn.com",
     siteName: "iamzeiyn",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://iamzeiyn.com/zain2.png",
+        url: "https://iamzeiyn.com/zain.png",
         width: 1200,
         height: 630,
         alt: "Zain Portfolio Preview",
@@ -55,15 +55,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zain | Portfolio",
+    title: "Zain S.",
     description:
-      "Professional portfolio by Zain — Software Engineer, Investor, and Entrepreneur.",
+      "Zain — Software engineer, investor, and entrepreneur.",
     creator: "@iamzeiyn",
-    images: ["https://iamzeiyn.com/zain2.png"],
+    images: ["https://iamzeiyn.com/zain.png"],
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/apple-touch-icon.png",
+    icon: "/batman.svg",
+    apple: "/icon.png",
   },
   robots: {
     index: true,
@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "https://www.instagram.com/iamzeiyn",
       "https://www.pinterest.com/iamzeiyn"
     ],
-    jobTitle: "Software Engineer, Investor, Entrepreneur",
+    jobTitle: "CEO, Software Engineer, Investor, Entrepreneur",
     worksFor: {
       "@type": "Organization",
       name: "Lazain Bleu",
@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Preload key assets */}
-        <link rel="preload" href="/images/zain2.png" as="image" />
+        <link rel="preload" href="/images/zain.png" as="image" />
 
         {/* Inject structured data */}
         <script

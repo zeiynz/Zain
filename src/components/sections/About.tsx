@@ -211,7 +211,7 @@ export default function About() {
                                     {/* Asumsi Card component sudah memiliki border styling yang benar */}
                                     <div className="w-full aspect-square">
                                         {/* Ganti dengan path foto Anda */}
-                                        <Card src="/images/zspider.png" alt="Profile" />
+                                        <Card src="/images/zain.png" alt="Profile" />
                                     </div>
 
                                     {/* CTA - Tombol Connect dan Chat yang Selaras */}
