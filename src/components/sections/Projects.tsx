@@ -26,7 +26,7 @@ const FEATURED_PROJECTS: Project[] = [
         tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
         image: '/assets/lazainbleu.png',
         github: 'https://github.com/lazainbleu',
-        live: 'https://lazainbleu.com',
+        live: 'https://lazainbleu.vercel.app/',
     },
     {
         id: '2',
