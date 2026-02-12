@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     images: ["https://iamzeiyn.com/zain.png"],
   },
   icons: {
-    icon: "/batman.svg",
+    icon: "/icon.svg",
     apple: "/icon.png",
   },
   robots: {
