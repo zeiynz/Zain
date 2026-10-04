@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { GeistMono } from "geist/font/mono"
 import { GeistSans } from "geist/font/sans"
 
+import { CustomCursor } from "@/components/ui/custom-cursor"
+
 import { Footer } from "@/components/layout/footer"
 
 import "./globals.css"
@@ -70,6 +72,7 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <CustomCursor />
         {children}
         <Footer />
       </body>
