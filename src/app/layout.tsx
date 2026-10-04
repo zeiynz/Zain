@@ -72,9 +72,10 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <CustomCursor />
-        {children}
-        <Footer />
+        <CustomCursor>
+          {children}
+          <Footer />
+        </CustomCursor>
       </body>
     </html>
   )
