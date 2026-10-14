@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Zain - Founder & Builder",
+    default: "Zain S.",
     template: "%s — Zain",
   },
 
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "Zain",
-    title: "Zain - Founder & Builder",
+    title: "Zain S.",
     description:
       "Founder and builder creating thoughtful software products, businesses, and experiments.",
     locale: "en_US",

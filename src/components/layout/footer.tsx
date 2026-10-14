@@ -21,7 +21,7 @@ export function Footer() {
     return (
         <footer className="mt-auto border-t border-border">
             <div className="mx-auto flex max-w-3xl items-center justify-between gap-6 px-6 py-5 text-xs text-muted-foreground sm:px-8">
-                <span>© {new Date().getFullYear()} Iamzeiyn</span>
+                <span>© {new Date().getFullYear()} Zain S.</span>
 
                 <nav className="flex items-center gap-4" aria-label="Social links">
                     {socials.map(({ label, href }) => (
