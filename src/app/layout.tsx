@@ -1,14 +1,15 @@
-import type { Metadata } from "next"
-import { GeistMono } from "geist/font/mono"
-import { GeistSans } from "geist/font/sans"
 
-import { CustomCursor } from "@/components/ui/custom-cursor"
+import type { Metadata } from "next";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
-import { Footer } from "@/components/layout/footer"
+import { CustomCursor } from "@/components/ui/custom-cursor";
+import { Footer } from "@/components/layout/footer";
+// import { Navbar } from "@/components/layout/navbar"
 
-import "./globals.css"
+import "./globals.css";
 
-const siteUrl = "https://zain.dev"
+const siteUrl = "https://zain.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -22,7 +23,6 @@ export const metadata: Metadata = {
     "Zain is a founder and builder creating thoughtful software products, businesses, and experiments.",
 
   applicationName: "Zain",
-
   authors: [{ name: "Zain", url: siteUrl }],
   creator: "Zain",
   publisher: "Zain",
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Zain — Founder & Builder",
+    title: "Zain S.",
     description:
       "Founder and builder creating thoughtful software products, businesses, and experiments.",
   },
 
   category: "technology",
-}
+};
 
 export default function RootLayout({
   children,
@@ -69,14 +69,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased dark`}
     >
       <body className="flex min-h-full flex-col">
         <CustomCursor>
+          {/* <Navbar /> */}
           {children}
           <Footer />
         </CustomCursor>
       </body>
     </html>
-  )
+  );
 }

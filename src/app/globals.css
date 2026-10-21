@@ -76,6 +76,27 @@
   --ring: #3f3f46;
 }
 
+.light {
+  --background: #ffffff;
+  --foreground: #111111;
+  --card: #f4f4f5;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #111111;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #111111;
+  --destructive: #ef4444;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #a1a1aa;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

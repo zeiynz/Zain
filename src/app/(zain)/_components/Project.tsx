@@ -10,8 +10,7 @@ type Project = {
 const projects: Project[] = [
     {
         title: "Launch Fast",
-        description:
-            "Something is coming.",
+        description: "A Next.js SaaS starter built to ship faster.",
         year: "2026",
         href: "https://getlaunchfast.vercel.app/",
     },
@@ -21,13 +20,6 @@ const projects: Project[] = [
             "The Memory Layer for Your Investment Thesis.",
         year: "2026",
         href: "https://clyveai.vercel.app/",
-    },
-    {
-        title: "Lazain Bleu",
-        description:
-            "Fine Fragrances and Modern Perfumery.",
-        year: "2025",
-        href: "https://bio.site/lazainbleu/",
     },
 ]
 
