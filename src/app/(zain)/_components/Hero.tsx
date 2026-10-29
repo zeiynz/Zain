@@ -22,7 +22,7 @@ export default function Hero() {
                     </div>
 
                     <p className="text-sm text-muted-foreground">
-                        Malang, East Java
+                        malang | london
                     </p>
                 </div>
 

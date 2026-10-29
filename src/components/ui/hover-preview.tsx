@@ -200,6 +200,7 @@ export function HoverPreview({
             `/api/og-image?mode=check&url=${encodeURIComponent(url)}`,
             {
                 signal: requestController.signal,
+                cache: "force-cache",
             },
         )
             .then(async (response) => {
@@ -327,7 +328,7 @@ export function HoverPreview({
                                 <iframe
                                     src={url}
                                     title={`${title} live preview`}
-                                    loading="lazy"
+                                    loading="eager"
                                     allow="autoplay; fullscreen; picture-in-picture"
                                     referrerPolicy="no-referrer"
                                     className="block border-0"

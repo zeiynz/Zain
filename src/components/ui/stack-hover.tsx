@@ -44,20 +44,17 @@ export function StackHover({ items }: StackHoverProps) {
                                             initial={{
                                                 opacity: 0,
                                                 y: 4,
-                                                filter: "blur(4px)",
                                             }}
                                             animate={{
                                                 opacity: 1,
                                                 y: 0,
-                                                filter: "blur(0px)",
                                             }}
                                             exit={{
                                                 opacity: 0,
-                                                y: 3,
-                                                filter: "blur(3px)",
+                                                y: 2,
                                             }}
                                             transition={{
-                                                duration: 0.2,
+                                                duration: 0.16,
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
                                             className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-3 -translate-x-1/2 whitespace-nowrap"

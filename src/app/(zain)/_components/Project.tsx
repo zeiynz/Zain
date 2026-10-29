@@ -12,7 +12,7 @@ const projects: Project[] = [
         title: "Launch Fast",
         description: "A Next.js SaaS starter built to ship faster.",
         year: "2026",
-        href: "https://getlaunchfast.vercel.app/",
+        href: "https://launchfast-site.pages.dev/",
     },
     {
         title: "ClyveAI",
